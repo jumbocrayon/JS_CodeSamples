@@ -14,6 +14,8 @@ var QueryField = document.getElementById("query");
 var JsonpHeader;
 //True, if there is currently a request in progress.
 var RequestInProgress = false;
+//The limit in place for the amount per page returned for the query
+var QueryLimit = 10;
 
 //////////////// Setup Code //////////////////////
 SearchButton.disabled = true;
@@ -35,11 +37,24 @@ function UpdateSearchButton(){
  */
 function MakeNewQuery(){
 	RequestInProgress = true;
+	ResetPageNumber();
 	if (JsonpHeader != undefined && JsonpHeader != null){
 		document.querySelector('head').removeChild(JsonpHeader);
 	}
 	let queryString = document.getElementById("query").value;
 	let url = GetQueryUrl(queryString,'HandleNewResponse');
+	JsonpHeader = document.createElement('script');
+	JsonpHeader.src = url;
+	document.querySelector('head').appendChild(JsonpHeader);
+}
+
+/**
+ * Navigates to the specified url
+ *
+ * @param	url 	The url to load
+ */
+function NavigateQueryUrl(url){
+	RequestInProgress = true;
 	JsonpHeader = document.createElement('script');
 	JsonpHeader.src = url;
 	document.querySelector('head').appendChild(JsonpHeader);
@@ -54,10 +69,11 @@ function MakeNewQuery(){
 function HandleNewResponse(serverData) {
 	TryLog(serverData);
 	RawResponse = serverData;
+	RequestInProgress = false;
 	if (IsErrorResponse(serverData)){
 		//handle error case here
 	} else {
+		UpdateResponseNavbar();
 		//do the things with the results.
 	}
-	RequestInProgress = false;
 }

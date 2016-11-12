@@ -30,20 +30,21 @@ function GetQueryUrl(query, callback = 'callback') {
  * @param	rawResponse		the raw response we are generating a URL based on
  * @return  A fully valid URL ready to be used in a jsonp request
  */
-function GetRelationLink(relationName, rawResponse){
+function GetRelationLink(relationName, rawResponse, callback = 'callback'){
 	function checkRelationValid(){
 		var validOptions = ['self','next','prev'];
-		return validOptions.find(relationName) != null;
+		return validOptions.find(x => {return x === relationName;}) != null;
 	}
 	if (!checkRelationValid()){
 		TryLog("Relation must be self, next, or prev, not: "+relationName);
 		return null;
 	}
 	if (!("_links" in rawResponse) || !(relationName in rawResponse["_links"])){
-		TryLog("Cannot acces relation "+relationName+" because the link does not exist in the response ");
 		return null;
 	}
+		
 	//TODO: format the new url with the API key and fix the silly amprisand thingy
+	return rawResponse["_links"][relationName]+'&client_id='+TWITCH_API_KEY+'&callback='+callback;
 }
 
 /**
