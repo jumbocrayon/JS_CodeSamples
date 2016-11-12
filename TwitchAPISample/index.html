@@ -2,33 +2,58 @@
 <html lang="en" data-framework="javascript">
 	<head>
 		<meta charset="utf-8">
-		<title>Jess Loeb JS App</title>
-		<link rel="stylesheet" href="css/style.css">
+		<title>Twitch Stream Search</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/nav.css">
+		<link rel="stylesheet" href="css/stream.css">
 	</head>
 	<body>
-		<div id="body-container">
+		<div id="page_configuration" hidden>
+			<!-- 
+				The idea here is to allow us to dynamically change which elements we want to use with different sub-modules 
+				easily without having to remember to update a script also, because they will read the elements out of here. 
+			-->
+			<input type="hidden" id="nav-page-element" value="nav_page_number"/><!-- nav module needs this --> 
+			<input type="hidden" id="response-container-element" value="response_container"><!-- query response module needs this --> 
+			<input type="hidden" id="stream-template-element" value="response_template"/>
+		</div>
+		<div id="body_container">
 			<div class="header">
 				<h1>View Streams</h1>
 				<input class="query-formatter" id="query" placeholder="Enter query" autofocus />
 				<button id="search">Search</button>
 			</div>
 			<br>
-			<div class="stream-response" id="response-container">
+			<div class="stream-container" id="response_container">
 				<div class="nav-responses">
-					<div class="info-responses" id="total_results">Total Results: 0</div><div class="page-responses">
+					<div class="nav-info-responses" id="total_results">Total Results: 0</div>
+					<div class="nav-page-responses">
 						<input class="img-btn" type="image" src="img/back_button.png" id="prev" width="32" height="32" />
 						<input class="img-btn" type="image" src="img/refresh_button.png" id="self" width="32" height="32" />
 						<input class="img-btn" type="image" src="img/forward_button.png" id="next" width="32" height="32" />
-						<br><div id="page-number"></div>
+						<br><div id="nav_page_number"></div>
 					</div>
 				</div>
-				<div class="list-responses">
-
+				<div class="response-container">
+					<div id="response_template" class="stream-display" hidden>
+						<div class="stream-preview">
+							<img src="img/placeholder.png" />
+						</div>
+						<div class="stream-contents">
+							<span class="stream-title">Stream Title</span>
+							<div class="stream-row">
+								<span class="stream-game">Game Name</span> - <span class="stream-viewers">0 viewers</span>
+							</div>
+							<div class="stream-row">
+								<span class="stream-desc">Stream description... ... ... :) ... ...<br> desc.... ...... <br> ...............</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/helpers.js"></script>
 		<script src="js/query_controller.js"></script>
-		<script src="js/stream_controller.js"></script>
+		<script src="js/nav_controller.js"></script>
 	</body>
 </html>
