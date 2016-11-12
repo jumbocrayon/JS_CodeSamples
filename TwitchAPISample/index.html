@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-framework="javascript">
+	<head>
+		<meta charset="utf-8">
+		<title>Jess Loeb JS App</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id="body-container">
+			<div class="header">
+				<h1>View Streams</h1>
+				<input class="query-formatter" id="query" placeholder="Enter query" autofocus />
+				<button id="search">Search</button>
+			</div>
+			<br>
+			<div class="stream-response" id="response-container">
+				<div class="nav-responses">
+					<div class="info-responses" id="total_results">Total Results:</div>
+					<div class="page-responses">
+						<img src="img/back_button.png" id="prev" width="32" height="32" />
+						<img src="img/refresh_button.png" id="self" width="32" height="32" />
+						<img src="img/forward_button.png" id="next" width="32" height="32" />
+					</div>
+				</div>
+				<div class="list-responses">
+
+				</div>
+			</div>
+		</div>
+		<script src="js/helpers.js"></script>
+		<script src="js/query_controller.js"></script>
+		<script src="js/stream_controller.js"></script>
+	</body>
+</html>
