@@ -25,18 +25,15 @@ UpdateResponseNavbar();
 /**
  * Resets the page number to 1;
  */
-function ResetPageNumber(){
-	PageNumber = 1;
+function ResetPageNumber(value = 1){
+	PageNumber = value;
 }
 
 /**
- * Handles the updating of the visibility of the response container element
+ * Handles the updating of the visibility of the stream container element
  */
 function UpdateResponseNavbar(){
-	if (RequestInProgress || typeof(RawResponse) === 'undefined' || RawResponse == null || IsErrorResponse(RawResponse)){
-		//hide the response nav element if there's no valid response list
-		document.getElementById("response-container").hidden = true;
-	} else {
+	if (HasValidResponse()){ 
 		//update visibility, text, buttons
 		document.getElementById("total_results").innerHTML = RESULTS_PREFIX+RawResponse['_total'];
 		let total = Math.ceil(RawResponse['_total']/QueryLimit);
@@ -53,13 +50,12 @@ function UpdateResponseNavbar(){
 			NavigateQueryUrl(SelfUrl);
 		};
 		NextUrl = GetRelationLink("next",RawResponse,'HandleNewResponse');
-		NextButton.disabled = NextUrl == null || (PageNumber == total);
+		NextButton.disabled = NextUrl == null || (PageNumber >= total);
 		NextButton.onclick = function() {
 			PageNumber++;
 			NavigateQueryUrl(NextUrl);
 		};
-		
-		document.getElementById("page-number").innerHTML = 'page '+PageNumber+'/'+total;
-		document.getElementById("response-container").hidden = false;
+		let pageElement = document.getElementById("nav-page-element").value;
+		document.getElementById(pageElement).innerHTML = 'page '+PageNumber+'/'+total;
 	}
 }

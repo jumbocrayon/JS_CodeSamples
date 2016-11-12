@@ -21,8 +21,25 @@ var QueryLimit = 10;
 SearchButton.disabled = true;
 SearchButton.onclick = MakeNewQuery;
 QueryField.addEventListener("focusout", UpdateSearchButton, true);
+QueryField.onkeyup = HandleKey;
+CheckResponseContainerVisibility();
 
 ////////////////// Functions //////////////////////
+/**
+ * A keydown handler for the query field to support hitting enter as well as enabling the
+ * search functionality as typing occurs within the input field.
+ *
+ * @param	event 	The event for the onkeydown attatched 
+ */
+function HandleKey(evt){
+	UpdateSearchButton();
+	if (SearchButton.disabled === false && RequestInProgress === false){
+		if(evt.keyCode == 13){
+			 MakeNewQuery();
+		}
+	}
+}
+
 /**
  * Handles the updating for the query search button so we are looking for a valid string
  */
@@ -61,6 +78,23 @@ function NavigateQueryUrl(url){
 }
 
 /**
+ * Determines whether or not there is a valid response object associated with the last search
+ *
+ * @return 	True, if there exists a valid response for the jsonp request that was executed
+ */
+function HasValidResponse(){
+	return !(RequestInProgress || typeof(RawResponse) === 'undefined' || RawResponse == null || IsErrorResponse(RawResponse));
+}
+
+/**
+ * Updates the visibility of the response container for the page if there exists a valid response to display.
+ */
+function CheckResponseContainerVisibility(){
+	let pageElement = document.getElementById("response-container-element").value;
+	document.getElementById(pageElement).hidden = !HasValidResponse();
+}
+
+/**
  * The controller function/callback for handling the server data from the API
  *
  * @param	serverData	A valid JS object containing either error information
@@ -70,9 +104,14 @@ function HandleNewResponse(serverData) {
 	TryLog(serverData);
 	RawResponse = serverData;
 	RequestInProgress = false;
+	CheckResponseContainerVisibility();
+
 	if (IsErrorResponse(serverData)){
 		//handle error case here
 	} else {
+		if (RawResponse['_total'] == 0){
+			ResetPageNumber(0);
+		}
 		UpdateResponseNavbar();
 		//do the things with the results.
 	}
