@@ -3,6 +3,10 @@
  *
  * Responsible for the logic control functions associated with this prototype.
  */
+//////////////////// Const ////////////////////////
+//The element that will reference the id of the response container in the document
+const RESPONSE_ELEM = "config_response_container_element";
+
 //////////////////// Vars ///////////////////////
 // The raw response from the server.
 var RawResponse;
@@ -90,8 +94,10 @@ function HasValidResponse(){
  * Updates the visibility of the response container for the page if there exists a valid response to display.
  */
 function CheckResponseContainerVisibility(){
-	let pageElement = document.getElementById("response-container-element").value;
-	document.getElementById(pageElement).hidden = !HasValidResponse();
+	let configElement = GetConfiguredElement(RESPONSE_ELEM);
+	if (configElement != null){
+		configElement.hidden = !HasValidResponse();
+	}
 }
 
 /**

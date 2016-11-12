@@ -13,9 +13,8 @@
 				The idea here is to allow us to dynamically change which elements we want to use with different sub-modules 
 				easily without having to remember to update a script also, because they will read the elements out of here. 
 			-->
-			<input type="hidden" id="nav-page-element" value="nav_page_number"/><!-- nav module needs this --> 
-			<input type="hidden" id="response-container-element" value="response_container"><!-- query response module needs this --> 
-			<input type="hidden" id="stream-template-element" value="response_template"/>
+			<input type="hidden" id="config_nav_page_elem" value="nav_page_number"/><!-- nav module needs this --> 
+			<input type="hidden" id="config_response_container_element" value="response_container"><!-- query response module needs this --> 
 		</div>
 		<div id="body_container">
 			<div class="header">
@@ -34,7 +33,7 @@
 						<br><div id="nav_page_number"></div>
 					</div>
 				</div>
-				<div class="response-container">
+				<div class="response-container" id="stream_list">
 					<div id="response_template" class="stream-display" hidden>
 						<div class="stream-preview">
 							<img src="img/placeholder.png" />
@@ -53,6 +52,7 @@
 			</div>
 		</div>
 		<script src="js/helpers.js"></script>
+		<script src="js/helpers_app.js"></script>
 		<script src="js/query_controller.js"></script>
 		<script src="js/nav_controller.js"></script>
 	</body>

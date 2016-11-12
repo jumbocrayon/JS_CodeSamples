@@ -4,8 +4,11 @@
  * Handles all things related to displaying/interacting with the
  * stream info response from the Twitch API call.
  */
-//////////////////// Vars ///////////////////////
+//////////////////// CONST ///////////////////////
 const RESULTS_PREFIX = "Total Results: ";
+const CONFIG_PAGE_ELEM = "config_nav_page_elem";
+
+//////////////////// VARS ///////////////////////
 //previous page button reference
 var PrevButton = document.getElementById("prev");
 var PrevUrl;
@@ -55,7 +58,9 @@ function UpdateResponseNavbar(){
 			PageNumber++;
 			NavigateQueryUrl(NextUrl);
 		};
-		let pageElement = document.getElementById("nav-page-element").value;
-		document.getElementById(pageElement).innerHTML = 'page '+PageNumber+'/'+total;
+		let pageElement = GetConfiguredElement(CONFIG_PAGE_ELEM);
+		if (pageElement != null){
+			pageElement.innerHTML = 'page '+PageNumber+'/'+total;
+		}
 	}
 }
