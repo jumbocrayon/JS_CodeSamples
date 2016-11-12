@@ -1,0 +1,28 @@
+.nav-responses {
+	overflow: hidden;
+	color: blue;
+	height: 50px;
+}
+
+.nav-page-responses {
+	float: right;
+	padding-right: 2%;
+	display: inline-block;
+	height: 36px;
+	width: auto;
+}
+
+.nav-info-responses {
+	float: left;
+	padding-left: 2%;
+	text-align: ;
+	height: 36px;
+	line-height: 36px;
+	width: auto;
+}
+
+#nav_page_number{
+	top: -10px;
+	font-size: 8pt;
+	color: gray;
+}

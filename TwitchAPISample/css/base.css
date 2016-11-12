@@ -18,7 +18,7 @@ input[type="image"]:disabled {
     opacity: 0.4;
 }
 
-#body-container{
+#body_container{
 	width:90%;
 	clear: both;
 	display: inline-block;
@@ -36,40 +36,12 @@ input[type="image"]:disabled {
 	background-color: #a3eded;
 }
 
-.stream-response {
+.stream-container {
 	width:90%;
 	background-color: #bfefb3;
 	text-align: center;
 	padding-top: 1px;
+	padding-left, padding-right: 2px;
 	width: inherit;
 	overflow: hidden;
-}
-
-.nav-responses {
-	overflow: hidden;
-	color: blue;
-	height: 50px;
-}
-
-.page-responses {
-	float: right;
-	padding-right: 2%;
-	display: inline-block;
-	height: 36px;
-	width: auto;
-}
-
-#page-number{
-	top: -10px;
-	font-size: 8pt;
-	color: gray;
-}
-
-.info-responses {
-	float: left;
-	padding-left: 2%;
-	text-align: ;
-	height: 36px;
-	line-height: 36px;
-	width: auto;
 }

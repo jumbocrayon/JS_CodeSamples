@@ -1,0 +1,59 @@
+.stream-container {
+	overflow: hidden;
+	padding: 5px;
+}
+
+.stream-display {
+	overflow: hidden;
+	clear: both;
+	padding: 3px;
+	background-color: #d9a3ed;
+	height: auto;
+	min-height: 64px;
+}
+
+.stream-preview {
+	float: left;
+	padding-left: 5px;
+	width: 20%;
+}
+
+.stream-row {
+	text-align: left;
+	border: 1px;
+}
+
+.stream-contents {
+	padding-left: 5px;
+	float: left;
+	width: 70%;
+}
+
+.stream-title {
+	background-color: red;
+	padding-bottom, padding-top: 1px;
+	text-align: center;
+	clear: right;
+	border-bottom: 1px solid #4588ba;
+	margin-bottom, margin-top: 1px;
+	display: block;
+}
+.stream-game {
+	float: left;
+	margin-top: 1px;
+	background-color: green;
+	padding-top, padding-bottom: 1px;
+	display: inline-block;
+}
+.stream-viewers {
+	margin-top: 1px;
+	background-color: blue;
+	padding-top, padding-bottom: 1px;
+	display: inline-block;
+}
+
+.stream-desc {
+	padding-top, padding-bottom: 1px;
+	display: inline-block;
+	font-style: italic;
+}
