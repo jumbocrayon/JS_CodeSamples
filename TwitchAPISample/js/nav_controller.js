@@ -23,6 +23,7 @@ var PageNumber = 1;
 
 //////////////// Setup Code //////////////////////
 UpdateResponseNavbar();
+AppEventHandler.addEventListener(DATA_RECEIVED,UpdateResponseNavbar,false);
 
 //////////////// Functions //////////////////////
 /**
@@ -34,9 +35,15 @@ function ResetPageNumber(value = 1){
 
 /**
  * Handles the updating of the visibility of the stream container element
+ *
+ *	@param	e 	OPTIONAL	The event triggering this, if it exists.
  */
-function UpdateResponseNavbar(){
+function UpdateResponseNavbar(e = null){
 	if (HasValidResponse()){ 
+		//special case for display purposes when we have a valid response with no streams
+		if (RawResponse['_total'] == 0){
+			PageNumber = 0;
+		}
 		//update visibility, text, buttons
 		document.getElementById("total_results").innerHTML = RESULTS_PREFIX+RawResponse['_total'];
 		let total = Math.ceil(RawResponse['_total']/QueryLimit);

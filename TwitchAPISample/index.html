@@ -17,6 +17,7 @@
 			<input type="hidden" id="config_response_container_element" value="response_container"><!-- query response module needs this --> 
 			<input type="hidden" id="config_stream_template_element" value="response_template"/>
 			<input type="hidden" id="config_stream_container_element" value="stream_list"/>
+			<input type="hidden" id="data_received_controller" />
 		</div>
 		<div id="body_container">
 			<div class="header">
@@ -53,9 +54,13 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/helpers.js"></script>
-		<script src="js/helpers_app.js"></script>
-		<script src="js/query_controller.js"></script>
-		<script src="js/nav_controller.js"></script>
+		<div id="scripts" hidden>
+			<script src="js/helpers.js"></script>
+			<script src="js/helpers_app.js"></script>
+			<script src="js/app_controller.js"></script>
+			<script src="js/query_controller.js"></script>
+			<script src="js/nav_controller.js"></script>
+			<script src="js/stream_controller.js"></script>
+		</div>
 	</body>
 </html>

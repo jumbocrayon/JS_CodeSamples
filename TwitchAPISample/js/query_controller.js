@@ -8,23 +8,18 @@
 const RESPONSE_ELEM = "config_response_container_element";
 
 //////////////////// Vars ///////////////////////
-// The raw response from the server.
-var RawResponse;
 //The element representing the search button
 var SearchButton = document.getElementById("search");
 //The element representing the query input field
 var QueryField = document.getElementById("query");
 //The element that represents the jsonp request in the header
 var JsonpHeader;
-//True, if there is currently a request in progress.
-var RequestInProgress = false;
 //The limit in place for the amount per page returned for the query
 var QueryLimit = 10;
 
 //////////////// Setup Code //////////////////////
 SearchButton.disabled = true;
 SearchButton.onclick = MakeNewQuery;
-QueryField.addEventListener("focusout", UpdateSearchButton, true);
 QueryField.onkeyup = HandleKey;
 CheckResponseContainerVisibility();
 
@@ -82,15 +77,6 @@ function NavigateQueryUrl(url){
 }
 
 /**
- * Determines whether or not there is a valid response object associated with the last search
- *
- * @return 	True, if there exists a valid response for the jsonp request that was executed
- */
-function HasValidResponse(){
-	return !(RequestInProgress || typeof(RawResponse) === 'undefined' || RawResponse == null || IsErrorResponse(RawResponse));
-}
-
-/**
  * Updates the visibility of the response container for the page if there exists a valid response to display.
  */
 function CheckResponseContainerVisibility(){
@@ -115,10 +101,6 @@ function HandleNewResponse(serverData) {
 	if (IsErrorResponse(serverData)){
 		//handle error case here
 	} else {
-		if (RawResponse['_total'] == 0){
-			ResetPageNumber(0);
-		}
-		UpdateResponseNavbar();
-		//do the things with the results.
+		AppEventHandler.dispatchEvent(DataReceivedEvent);
 	}
 }

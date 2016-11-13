@@ -10,9 +10,10 @@ const STREAM_CONTAINER = 'config_stream_container_element';
 
  /////////////////////////////// VARS /////////////////////////////////////
 var StreamContainer = GetConfiguredElement(STREAM_CONTAINER);
+var ActiveStreamIds = [];
 
  /////////////////////////////// INIT /////////////////////////////////////
-
+AppEventHandler.addEventListener(DATA_RECEIVED,OnStreams,false);
  ///////////////////////////// FUNCTIONS //////////////////////////////////
 /**
  * Clears existing stream elements from the stream container element.
@@ -31,7 +32,27 @@ function ClearStream(ignoreList = null){
  * 	@return 	Array	A list of identifiers that do not exist on the document.
  */
 function IdendifyNewStreams(idList){
-	return [];
+	let result = [];
+	for (let id of idList){
+		if (!ActiveStreamIds.find(x => {return x == id;})){
+			result.push(id);
+		} else {
+			TryLog("Found matching ID already: "+id);
+		}
+	}
+	return result;
+}
+
+
+/**
+ * Handler for when new streams may have been detected
+ *
+ * @param	e 	OPTIONAL 	unused (event listener)
+ */
+function OnStreams(e = null){
+	if (HasValidResponse()){ 
+		BuildStreamUI(RawResponse['streams']);
+	}
 }
 
 /**
