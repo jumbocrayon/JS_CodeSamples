@@ -25,7 +25,6 @@
 				<input class="query-formatter" id="query" placeholder="Enter query" autofocus />
 				<button id="search">Search</button>
 			</div>
-			<br>
 			<div class="stream-container" id="response_container">
 				<div class="nav-responses">
 					<div class="nav-info-responses" id="total_results">Total Results: 0</div>
@@ -37,7 +36,8 @@
 					</div>
 				</div>
 				<div class="response-container" id="stream_list">
-					<div id="response_template" class="stream-display" hidden>
+				</div>
+				<div id="response_template" class="stream-display" hidden>
 						<div class="stream-preview">
 							<img src="img/placeholder.png" />
 						</div>
@@ -51,12 +51,12 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 		<div id="scripts" hidden>
 			<script src="js/helpers.js"></script>
 			<script src="js/helpers_app.js"></script>
+			<script src="js/helpers_stream.js"></script>
 			<script src="js/app_controller.js"></script>
 			<script src="js/query_controller.js"></script>
 			<script src="js/nav_controller.js"></script>
