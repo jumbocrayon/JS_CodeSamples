@@ -2,6 +2,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	font-family: sans-serif;
 }
 button {
 	margin: 0px;
@@ -26,22 +27,28 @@ input[type="image"]:disabled {
 	overflow: hidden;
 }
 
+h1 {
+	font-size: 3.2rem;
+	padding-top: 2.2rem;
+	margin-bottom: 1rem;
+	line-height: 1.1;
+	color: #DDFFFF;
+	font-weight: 150;
+}
+
 .header {
-	width:90%;
 	clear: both;
 	font-size: 50px;
 	font-weight: 50;
 	text-align: center;
 	padding-left: 5%;
-	background-color: #a3eded;
+	background-color: #441775;
 }
 
 .stream-container {
-	width:90%;
 	background-color: #bfefb3;
 	text-align: center;
 	padding-top: 1px;
 	padding-left, padding-right: 2px;
-	width: inherit;
 	overflow: hidden;
 }
