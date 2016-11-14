@@ -1,0 +1,14 @@
+
+.err-status {
+	font-weight: 100;
+	font-color: gray;
+}
+
+.err-container {
+	margin: 1;
+	text-align: center;
+	padding: 0;
+	background-color: red;
+	overflow: hidden;
+	height: auto;
+}

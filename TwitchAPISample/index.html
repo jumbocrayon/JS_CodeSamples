@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Twitch Stream Search</title>
 		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/err.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/stream.css">
 	</head>
@@ -17,6 +18,8 @@
 			<input type="hidden" id="config_response_container_element" value="response_container"><!-- query response module needs this --> 
 			<input type="hidden" id="config_stream_template_element" value="response_template"/>
 			<input type="hidden" id="config_stream_container_element" value="stream_list"/>
+			<!-- App-wide controller config elements-->
+			<input type="hidden" id="config_err_elem" value="error_container" />
 			<input type="hidden" id="data_received_controller" />
 		</div>
 		<div id="body_container">
@@ -24,6 +27,9 @@
 				<h1>View Streams</h1>
 				<input class="query-formatter" id="query" placeholder="Enter query" autofocus />
 				<button id="search">Search</button>
+			</div>
+			<div class="err-container" id="error_container" hidden>
+				<span class="err-status">ERROR - something went wrong, please check Twitch</span>
 			</div>
 			<div class="stream-container" id="response_container">
 				<div class="nav-responses">

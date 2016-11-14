@@ -60,7 +60,9 @@ function MakeNewQuery(){
 	let queryString = document.getElementById("query").value;
 	let url = GetQueryUrl(queryString,'HandleNewResponse');
 	JsonpHeader = document.createElement('script');
+	JsonpHeader.type = "text/javascript";
 	JsonpHeader.src = url;
+	JsonpHeader.onerror = function (e) {AppEventHandler.dispatchEvent(ErrorReceivedEvent);};
 	document.querySelector('head').appendChild(JsonpHeader);
 }
 
@@ -97,10 +99,5 @@ function HandleNewResponse(serverData) {
 	RawResponse = serverData;
 	RequestInProgress = false;
 	CheckResponseContainerVisibility();
-
-	if (IsErrorResponse(serverData)){
-		//handle error case here
-	} else {
-		AppEventHandler.dispatchEvent(DataReceivedEvent);
-	}
+	AppEventHandler.dispatchEvent(DataReceivedEvent);
 }
