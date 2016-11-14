@@ -32,7 +32,6 @@ function ClearStream(ignoreList = []){
 		}
 		currentStream = StreamContainer.childNodes[safeElements];
 	}
-	TryLog("Kept elements: "+safeElements);
 }
 
 /**

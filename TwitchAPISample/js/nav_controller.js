@@ -24,13 +24,16 @@ var PageNumber = 1;
 //////////////// Setup Code //////////////////////
 UpdateResponseNavbar();
 AppEventHandler.addEventListener(DATA_RECEIVED,UpdateResponseNavbar,false);
+AppEventHandler.addEventListener(NEW_QUERY_EVT, ResetPageNumber, false);
 
 //////////////// Functions //////////////////////
 /**
  * Resets the page number to 1;
+ *
+ *`@param	evt 	OPTIONAL	unused event listener
  */
-function ResetPageNumber(value = 1){
-	PageNumber = value;
+function ResetPageNumber(evt = null){
+	PageNumber = 1;
 }
 
 /**

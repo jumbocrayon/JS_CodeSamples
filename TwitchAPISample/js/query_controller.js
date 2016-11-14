@@ -6,6 +6,7 @@
 //////////////////// Const ////////////////////////
 //The element that will reference the id of the response container in the document
 const RESPONSE_ELEM = "config_response_container_element";
+const NEW_QUERY_EVT = 'newquerymade';
 
 //////////////////// Vars ///////////////////////
 //The element representing the search button
@@ -15,6 +16,8 @@ var QueryField = document.getElementById("query");
 //The element that represents the jsonp request in the header
 var JsonpHeader;
 //The limit in place for the amount per page returned for the query
+var NewQueryEvent = new Event(NEW_QUERY_EVT);
+//The limit for number of results per query. This could theoretically be user-defined.
 var QueryLimit = 10;
 
 //////////////// Setup Code //////////////////////
@@ -52,8 +55,8 @@ function UpdateSearchButton(){
  * Makes a query via jsonp on behalf of the user, which will invalidate any existing data.
  */
 function MakeNewQuery(){
+	AppEventHandler.dispatchEvent(NewQueryEvent);
 	RequestInProgress = true;
-	ResetPageNumber();
 	if (JsonpHeader != undefined && JsonpHeader != null){
 		document.querySelector('head').removeChild(JsonpHeader);
 	}

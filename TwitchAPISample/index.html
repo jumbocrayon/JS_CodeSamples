@@ -14,8 +14,10 @@
 				The idea here is to allow us to dynamically change which elements we want to use with different sub-modules 
 				easily without having to remember to update a script also, because they will read the elements out of here. 
 			-->
-			<input type="hidden" id="config_nav_page_elem" value="nav_page_number"/><!-- nav module needs this --> 
-			<input type="hidden" id="config_response_container_element" value="response_container"><!-- query response module needs this --> 
+			<!-- nav module configurable UI elements --> 
+			<input type="hidden" id="config_nav_page_elem" value="nav_page_number"/>
+			<!-- stream module configurable UI elements --> 
+			<input type="hidden" id="config_response_container_element" value="response_container">
 			<input type="hidden" id="config_stream_template_element" value="response_template"/>
 			<input type="hidden" id="config_stream_container_element" value="stream_list"/>
 			<!-- App-wide controller config elements-->
